@@ -58,8 +58,8 @@ public class Inventory {
         repository().findById(Long.valueOf(orderCancelled.getProductId())).ifPresent(inventory ->{
 			inventory.setStock(inventory.getStock() + orderCancelled.getQty());
 		    repository().save(inventory);
-
-        }
+        });
+        
     //>>> Clean Arch / Port Method
     }
 }

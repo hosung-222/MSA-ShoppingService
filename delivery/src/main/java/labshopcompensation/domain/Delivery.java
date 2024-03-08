@@ -72,17 +72,15 @@ public class Delivery {
         repository().save(delivery);
 
         */
-
-        /** Example 2:  finding and process
         
-        repository().findById(orderCancelled.get???()).ifPresent(delivery->{
+        repository().findByOrderId(orderCancelled.getId()).ifPresent(delivery->{
             
-            delivery // do something
-            repository().save(delivery);
+            
+            repository().delete(delivery);
 
 
          });
-        */
+        
 
     }
     //>>> Clean Arch / Port Method
