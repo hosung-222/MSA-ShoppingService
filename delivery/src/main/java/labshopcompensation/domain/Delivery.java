@@ -41,37 +41,19 @@ public class Delivery {
 
     //<<< Clean Arch / Port Method
     public static void addToDeliveryList(OrderPlaced orderPlaced) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
+ 
         Delivery delivery = new Delivery();
+        delivery.setOrderId(orderPlaced.getId());
+        delivery.setQuantity( orderPlaced.getQty());
         repository().save(delivery);
 
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderPlaced.get???()).ifPresent(delivery->{
-            
-            delivery // do something
-            repository().save(delivery);
-
-
-         });
-        */
 
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void removeDelivery(OrderCancelled orderCancelled) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Delivery delivery = new Delivery();
-        repository().save(delivery);
-
-        */
+  
         
         repository().findByOrderId(orderCancelled.getId()).ifPresent(delivery->{
             
