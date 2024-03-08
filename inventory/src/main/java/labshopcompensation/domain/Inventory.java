@@ -59,8 +59,8 @@ public class Inventory {
 			inventory.setStock(inventory.getStock() + orderCancelled.getQty());
 		    repository().save(inventory);
 
-    }
+        }
     //>>> Clean Arch / Port Method
-
+    }
 }
 //>>> DDD / Aggregate Root
