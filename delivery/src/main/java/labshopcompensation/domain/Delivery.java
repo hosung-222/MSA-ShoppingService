@@ -50,8 +50,6 @@ public class Delivery {
 
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public static void removeDelivery(OrderCancelled orderCancelled) {
   
         
@@ -65,7 +63,7 @@ public class Delivery {
         
 
     }
-    //>>> Clean Arch / Port Method
+
 
 }
 //>>> DDD / Aggregate Root

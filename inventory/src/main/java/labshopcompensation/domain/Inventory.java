@@ -52,15 +52,13 @@ public class Inventory {
 
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
+
     public static void increaseStock(OrderCancelled orderCancelled) {
         repository().findById(Long.valueOf(orderCancelled.getProductId())).ifPresent(inventory ->{
 			inventory.setStock(inventory.getStock() + orderCancelled.getQty());
 		    repository().save(inventory);
         });
-        
-    //>>> Clean Arch / Port Method
+
     }
 }
 //>>> DDD / Aggregate Root
