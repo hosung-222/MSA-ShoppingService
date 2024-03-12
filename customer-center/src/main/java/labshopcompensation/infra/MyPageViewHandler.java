@@ -48,11 +48,32 @@ public class MyPageViewHandler {
             Optional<MyPage> myPageOptional = myPageRepository.findByOrderId(
                 deliveryStarted.getOrderId()
             );
+
             myPageOptional.ifPresent(myPage -> myPage.setDeliveryStatus("started"));
             myPageRepository.save(myPageOptional.get());
+
+       
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    //>>> DDD / CQRS
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void whenOrderCancelled_then_UPDATE_2(
+        @Payload OrderCancelled orderCancelled
+    ) {
+        try {
+            if (!orderCancelled.validate()) return;
+            // view 객체 조회
+
+            Optional<MyPage> myPageOptional = myPageRepository.findByOrderId(
+                orderCancelled.getId()
+            );
+            myPageOptional.ifPresent(myPage -> myPage.setOrderStatus("Cancelled"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
