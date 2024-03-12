@@ -70,6 +70,7 @@ public class MyPageViewHandler {
                 orderCancelled.getId()
             );
             myPageOptional.ifPresent(myPage -> myPage.setOrderStatus("Cancelled"));
+            myPageRepository.save(myPageOptional.get());
 
         } catch (Exception e) {
             e.printStackTrace();
