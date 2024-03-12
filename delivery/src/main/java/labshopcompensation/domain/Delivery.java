@@ -61,30 +61,6 @@ public class Delivery {
         */
 
     }
-
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
-    public static void removeDelivery(OrderCancelled orderCancelled) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Delivery delivery = new Delivery();
-        repository().save(delivery);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(orderCancelled.get???()).ifPresent(delivery->{
-            
-            delivery // do something
-            repository().save(delivery);
-
-
-         });
-        */
-
-    }
     //>>> Clean Arch / Port Method
 
 }
