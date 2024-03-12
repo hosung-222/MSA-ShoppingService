@@ -49,6 +49,7 @@ public class MyPageViewHandler {
                 deliveryStarted.getOrderId()
             );
             myPageOptional.ifPresent(myPage -> myPage.setDeliveryStatus("started"));
+            myPageRepository.save(myPageOptional.get());
         } catch (Exception e) {
             e.printStackTrace();
         }
