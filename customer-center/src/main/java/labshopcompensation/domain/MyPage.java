@@ -11,7 +11,7 @@ import lombok.Data;
 @Table(name = "MyPage_table")
 @Data
 public class MyPage {
-
+    @Id
     private Long orderId;
     private String productId;
     private String orderStatus;
