@@ -29,7 +29,7 @@ public class MyPageViewHandler {
             // view 객체에 이벤트의 Value 를 set 함
             myPage.setOrderId(orderPlaced.getId());
             myPage.setProductId(orderPlaced.getProductId());
-            myPage.setOrderStatus("OrderPlaced");
+            myPage.setOrderStatus("OrderPlaced");
             // view 레파지 토리에 save
             myPageRepository.save(myPage);
         } catch (Exception e) {
@@ -45,15 +45,10 @@ public class MyPageViewHandler {
             if (!deliveryStarted.validate()) return;
             // view 객체 조회
 
-            List<MyPage> myPageList = myPageRepository.findByOrderId(
+            Optional<MyPage> myPageOptional = myPageRepository.findByOrderId(
                 deliveryStarted.getOrderId()
             );
-            for (MyPage myPage : myPageList) {
-                // view 객체에 이벤트의 eventDirectValue 를 set 함
-                myPage.setDeliveryStatus("Started");
-                // view 레파지 토리에 save
-                myPageRepository.save(myPage);
-            }
+            myPageOptional.ifPresent(myPage -> myPage.setDeliveryStatus("started"));
         } catch (Exception e) {
             e.printStackTrace();
         }
