@@ -32,6 +32,7 @@ jobs:
           mvn clean package -f ./order/pom.xml
           mvn clean package -f ./inventory/pom.xml
           mvn clean package -f ./delivery/pom.xml
+          mvn clean package -f ./customer-center/pom.xml
 
       - name: Docker Build and push for Order
         uses: docker/build-push-action@v4
@@ -62,4 +63,14 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/delivery:latest
             ghcr.io/${{ github.repository }}/delivery:${{ github.ref_name }}
+            
+      - name: Docker Build and push for CustomerCenter
+        uses: docker/build-push-action@v4
+        with:
+          context: ./customer-center
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/customer-center:latest
+            ghcr.io/${{ github.repository }}/customer-center:${{ github.ref_name }}
             
