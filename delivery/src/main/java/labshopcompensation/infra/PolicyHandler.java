@@ -34,9 +34,8 @@ public class PolicyHandler {
         System.out.println(
             "\n\n##### listener AddToDeliveryList : " + orderPlaced + "\n\n"
         );
-
         // Sample Logic //
-        Delivery.addToDeliveryList(event);
+
     }
 }
 //>>> Clean Arch / Inbound Adaptor

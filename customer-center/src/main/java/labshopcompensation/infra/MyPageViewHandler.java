@@ -29,7 +29,7 @@ public class MyPageViewHandler {
             // view 객체에 이벤트의 Value 를 set 함
             myPage.setOrderId(orderPlaced.getId());
             myPage.setProductId(orderPlaced.getProductId());
-            myPage.setOrderStatus("OrderPlaced");
+            myPage.setOrderStatus("OrderPlaced");
             // view 레파지 토리에 save
             myPageRepository.save(myPage);
         } catch (Exception e) {
@@ -45,15 +45,14 @@ public class MyPageViewHandler {
             if (!deliveryStarted.validate()) return;
             // view 객체 조회
 
-            List<MyPage> myPageList = myPageRepository.findByOrderId(
+            Optional<MyPage> myPageOptional = myPageRepository.findByOrderId(
                 deliveryStarted.getOrderId()
             );
-            for (MyPage myPage : myPageList) {
-                // view 객체에 이벤트의 eventDirectValue 를 set 함
-                myPage.setDeliveryStatus("started");
-                // view 레파지 토리에 save
-                myPageRepository.save(myPage);
-            }
+
+            myPageOptional.ifPresent(myPage -> myPage.setDeliveryStatus("started"));
+            myPageRepository.save(myPageOptional.get());
+
+       
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,18 +66,15 @@ public class MyPageViewHandler {
             if (!orderCancelled.validate()) return;
             // view 객체 조회
 
-            List<MyPage> myPageList = myPageRepository.findByOrderId(
+            Optional<MyPage> myPageOptional = myPageRepository.findByOrderId(
                 orderCancelled.getId()
             );
-            for (MyPage myPage : myPageList) {
-                // view 객체에 이벤트의 eventDirectValue 를 set 함
-                myPage.setOrderStatus("Cancelled");
-                // view 레파지 토리에 save
-                myPageRepository.save(myPage);
-            }
+            myPageOptional.ifPresent(myPage -> myPage.setOrderStatus("Cancelled"));
+            myPageRepository.save(myPageOptional.get());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    //>>> DDD / CQRS
+
 }
